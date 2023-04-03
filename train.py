@@ -82,7 +82,7 @@ def main():
     logdir = f"{args.logdir}/{now}"
     writer = SummaryWriter(f"{logdir}/tb")
     h_mean_best = -1.0
-    val_loss_best = -float("inf")
+    val_loss_best = float("inf")
     wandb_logger = wandb.init(project="neural-astar-dem", config=args, name=args.rname, save_code=True)
 
 
@@ -132,7 +132,7 @@ def main():
         })
 
         # checkpointing
-        if val_loss > val_loss_best:
+        if val_loss < val_loss_best:
             print(f"best score updated: {val_loss_best:0.3f} -> {val_loss:0.3f}")
             val_loss_best = val_loss
             subprocess.run(["rm", "-rf", f"{logdir}/best.pt"])
