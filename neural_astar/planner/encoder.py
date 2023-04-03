@@ -102,7 +102,6 @@ class Autoencoder(nn.Module):
                 attn_dropout=0.15,
                 downsample_steps=3, 
                 resolution=(64, 64),
-                mode='f',
                 *args,
                 **kwargs):
         super().__init__()
@@ -124,14 +123,7 @@ class Autoencoder(nn.Module):
             (resolution[0] // 2**downsample_steps, resolution[1] // 2**downsample_steps)
         )
         self.decoder = Decoder(hidden_channels, out_channels, downsample_steps, cnn_dropout)
-        
-        self.recon_criterion = nn.L1Loss() if mode == 'h' else nn.MSELoss()
-        self.mode = mode
-        self.k = 64*64 if mode == 'h' else 1
-        
-        self.automatic_optimization = False
-        self.save_hyperparameters()
-
+                
     def forward(self, inputs):
         x = self.encoder(inputs)
         x = self.pos(x)
