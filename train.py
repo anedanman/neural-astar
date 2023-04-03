@@ -55,8 +55,8 @@ def main():
     #                                "valid",
     #                                args.batch_size,
     #                                shuffle=False)
-    train_data = RGBDEM(dir_name='data/train_rgbdem', limit=None)
-    val_data = RGBDEM(dir_name='data/train_rgbdem', limit=None, n_samples=1000)
+    train_data = RGBDEM(dir_name='../data/train_rgbdem', limit=None)
+    val_data = RGBDEM(dir_name='../data/train_rgbdem', limit=None, n_samples=1000)
     train_loader = torch.utils.data.DataLoader(train_data, 
                                                batch_size=args.batch_size, 
                                                shuffle=True, 
