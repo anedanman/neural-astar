@@ -47,7 +47,7 @@ class NeuralAstar(nn.Module):
         )
         self.encoder_input = encoder_input
         encoder_arch = getattr(encoder, encoder_arch)
-        self.encoder = encoder_arch(len(self.encoder_input), encoder_depth,
+        self.encoder = encoder_arch(len(self.encoder_input) + 2, encoder_depth,
                                     const)
         self.learn_obstacles = learn_obstacles
         if self.learn_obstacles:
