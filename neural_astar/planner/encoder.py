@@ -39,7 +39,8 @@ class EncoderBase(nn.Module):
         pass
 
     def forward(self, x):
-        y = torch.sigmoid(self.model(x))
+        # y = torch.sigmoid(self.model(x))
+        y = (self.model(x) + 1) / 2
         return y * self.const
 
 
